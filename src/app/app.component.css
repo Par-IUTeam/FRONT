@@ -1,0 +1,29 @@
+footer,header {
+    height: 50px;
+    width: 100%;
+    background-color: lightblue;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    left: 0pt;
+}
+footer {
+    font-size: large;
+    font-weight: bold;
+    bottom: 0pt;
+}
+
+header {
+    text-align: center;
+    height: 90px;
+    top: 0pt;
+}
+.corp {
+    margin-top: 90px;
+    width: 110%;
+    background-color: rgba(200, 200, 200,1);
+}
+button {
+    size: large;
+}

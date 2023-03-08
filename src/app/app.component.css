@@ -1,4 +1,4 @@
-footer,header {
+footer, header {
     height: 50px;
     width: 100%;
     background-color: lightblue;
@@ -19,6 +19,13 @@ header {
     height: 100px;
     top: 0pt;
     margin-bottom: 100px;
+}
+.logoNavBar {
+    position: fixed;
+    top: 0pt;
+    left: 0pt;
+    height: 80px;
+    width: 190px;
 }
 .navBar {
     display: flex;

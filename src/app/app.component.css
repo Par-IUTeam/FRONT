@@ -6,6 +6,7 @@ footer, header {
     background-attachment: scroll;
     background-position: 0% 0%;
     position: fixed;
+    z-index:1000; 
     left: 0pt;
 }
 footer {
@@ -35,4 +36,8 @@ header {
 a {
     text-decoration: none;
     color: black;
+}
+.pageAccueil{
+    padding-top: 100px;
+    padding-bottom: 50px;
 }

@@ -1,19 +1,46 @@
-<div class="homePage">
-    <header>
-        <img src="assets/img/logoUniv.png" class="logoNavBar">
-        <h2>
-            <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-                Institut de sondage de la communauté de Morlaix
-            </a>
-        </h2>
-        <div class="navBar">
-            <a routerLink="/formulaire" routerLinkActive="active" ariaCurrentWhenActive="page"><button>
-                FORMULAIRE
-              </button></a>
-            <a routerLink="/resultats" routerLinkActive="active" ariaCurrentWhenActive="page"><button>
-                RESULTATS
-              </button></a>
+<div>
+    <h1 id="title">Remplir le formulaire :</h1>
+    <form id="survey-form">
+
+        <div class="form-control">
+            <label for="name" id="label-name">
+                Nom
+            </label>
+            <input type="text" id="name" placeholder="Entrez votre nom" />
+            <label for="name" id="label-name">
+                Prénom
+            </label>
+            <input type="text" id="name" placeholder="Entrez votre Prénom" />
         </div>
-    </header>
-    <footer>Site réalisé par Axel Brun, Romain Groult et Alexis Montculier</footer>
+
+        <div class="form-control">
+            <label for="age" id="label-age">
+                Age
+            </label>
+            <input type="number" id="age" placeholder="Entrez votre âge" />
+        </div>
+        <div class="form-control">
+            <label for="email" id="label-email">
+                Email
+            </label>
+            <input type="email" id="email" placeholder="Entrez votre email" />
+        </div>
+
+
+        <div class="form-control">
+            <label for="aliment">
+                Quel Aliment préférez vous ?
+            </label>
+            <input name="aliment" id="aliment" placeholder="Entrez vos/votre aliment(s) préféré(s) ici" />
+
+        </div>
+        <div class="button">
+            <button type="reset" value="reset" id="reset">
+                Reset
+            </button>
+            <button type="submit" value="submit" id="submit">
+                Submit
+            </button>
+        </div>
+    </form>
 </div>

@@ -1,46 +1,51 @@
 <div>
-    <h1 id="title">Remplir le formulaire :</h1>
-    <form id="survey-form">
+  <h1 id="title">Remplir le formulaire :</h1>
+  <form id="survey-form">
+    <div class="form-control">
+      <label for="name" id="label-name"> Nom </label>
+      <input type="text" id="name" placeholder="Entrez votre nom" />
+      <label for="name" id="label-name"> Prénom </label>
+      <input type="text" id="name" placeholder="Entrez votre Prénom" />
+    </div>
 
-        <div class="form-control">
-            <label for="name" id="label-name">
-                Nom
-            </label>
-            <input type="text" id="name" placeholder="Entrez votre nom" />
-            <label for="name" id="label-name">
-                Prénom
-            </label>
-            <input type="text" id="name" placeholder="Entrez votre Prénom" />
-        </div>
+    <div class="form-control">
+      <label for="age" id="label-age"> Age </label>
+      <input type="number" id="age" placeholder="Entrez votre âge" />
+    </div>
+    <div class="form-control">
+      <label for="email" id="label-email"> Email </label>
+      <input type="email" id="email" placeholder="Entrez votre email" />
+    </div>
 
-        <div class="form-control">
-            <label for="age" id="label-age">
-                Age
-            </label>
-            <input type="number" id="age" placeholder="Entrez votre âge" />
-        </div>
-        <div class="form-control">
-            <label for="email" id="label-email">
-                Email
-            </label>
-            <input type="email" id="email" placeholder="Entrez votre email" />
-        </div>
+    <div class="form-control">
+      <label for="aliment"> Quel Aliment préférez vous ? </label>
+      <input
+        name="aliment"
+        id="aliment"
+        placeholder="Entrez vos/votre aliment(s) préféré(s) ici"
+      />
+    </div>
+    <div class="button">
+      <button type="reset" value="reset" id="reset">Reset</button>
+      <button type="submit" value="submit" id="submit">Submit</button>
+    </div>
+  </form>
 
-
-        <div class="form-control">
-            <label for="aliment">
-                Quel Aliment préférez vous ?
-            </label>
-            <input name="aliment" id="aliment" placeholder="Entrez vos/votre aliment(s) préféré(s) ici" />
-
-        </div>
-        <div class="button">
-            <button type="reset" value="reset" id="reset">
-                Reset
-            </button>
-            <button type="submit" value="submit" id="submit">
-                Submit
-            </button>
-        </div>
-    </form>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Input</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Textarea</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
 </div>

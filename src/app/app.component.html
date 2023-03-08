@@ -2,21 +2,23 @@
   <header>
     <img src="assets/img/logoUniv.png" class="logoNavBar">
     <h2>
-      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-        Institut de sondage de la communauté de Morlaix
+      <a routerLink="/">
+        {{title}}
       </a>
     </h2>
     <div class="navBar">
-      <a routerLink="/formulaire" routerLinkActive="active" ariaCurrentWhenActive="page"><button>
+      <a routerLink="/formulaire"><button>
           FORMULAIRE
         </button></a>
-      <a routerLink="/resultats" routerLinkActive="active" ariaCurrentWhenActive="page"><button>
+      <a routerLink="/resultats"><button>
           RESULTATS
         </button></a>
     </div>
   </header>
-  <div class="pageAccueil">
-    
-  </div>
+    <div class="pageAccueil">
+      <div *ngIf="currentRoute === '/'">
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   <footer>Site réalisé par Axel Brun, Romain Groult et Alexis Montculier</footer>
 </div>

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   { path: 'formulaire', component: FormulaireComponent },
   { path: 'resultats', component: ResultatsComponent },
-  { path: '', component: AppComponent }
+  { path: '', component: AppComponent}
 ];
 
 @NgModule({

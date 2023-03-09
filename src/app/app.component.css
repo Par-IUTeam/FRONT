@@ -10,16 +10,22 @@ footer, header {
     left: 0pt;
     text-align: center;
     padding : auto;
+    font-family: century gothic;
+    margin: 0;
+}
+h2 {
+    margin: 0;
 }
 footer {
     font-size: large;
     font-weight: bold;
+    line-height: 50px;
     bottom: 0pt;
 }
 header {
     height: 100px;
+    line-height: 100px;
     top: 0pt;
-    margin-bottom: 100px;
 }
 .logoNavBar {
     position: fixed;

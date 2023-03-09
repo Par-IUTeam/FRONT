@@ -33,15 +33,9 @@
         Nombre de sélections
     </th>
 </tr>
-<tr>
-    <td>
-        Ail
-    </td>
-    <td>
-        Condiment
-    </td>
-    <td>
-        20
-    </td>
+<tr *ngFor="let aliment of listAlimentsClassement">
+    <td>{{aliment.nom}}</td>
+    <td>{{aliment.categorie}}</td>
+    <td>{{aliment.nbSelections}}</td>
 </tr>
 </table>

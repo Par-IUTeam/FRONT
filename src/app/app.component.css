@@ -8,6 +8,8 @@ footer, header {
     position: fixed;
     z-index:1000; 
     left: 0pt;
+    text-align: center;
+    padding : auto;
 }
 footer {
     font-size: large;
@@ -15,7 +17,6 @@ footer {
     bottom: 0pt;
 }
 header {
-    text-align: center;
     height: 100px;
     top: 0pt;
     margin-bottom: 100px;
@@ -41,4 +42,6 @@ a {
     padding-bottom: 70px;
     padding-left: 5%;
     padding-right: 5%;
+    font-family: century gothic;
 }
+

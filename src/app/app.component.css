@@ -1,4 +1,5 @@
-footer, header {
+footer,
+header {
     height: 50px;
     width: 100%;
     background-color: lightblue;
@@ -6,47 +7,59 @@ footer, header {
     background-attachment: scroll;
     background-position: 0% 0%;
     position: fixed;
-    z-index:1000; 
+    z-index: 1000;
     left: 0pt;
     text-align: center;
-    padding : auto;
+    padding: auto;
     font-family: century gothic;
     margin: 0;
 }
+
 h2 {
     margin: 0;
 }
+
 footer {
     font-size: large;
     font-weight: bold;
     line-height: 50px;
     bottom: 0pt;
 }
+
 header {
     height: 100px;
     line-height: 100px;
     top: 0pt;
 }
+
 .logoNavBar {
     position: fixed;
     top: 0pt;
     left: 0pt;
-    height: 15%;
     width: 15%;
     max-height: 100px;
+    min-height: 90px;
     max-width: 300px;
 }
+
+#iconeHome {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .navBar {
     display: flex;
     justify-content: center;
     justify-content: space-around;
-    padding : 0 15%
+    padding: 0 15%
 }
+
 a {
     text-decoration: none;
     color: black;
 }
-.pageAccueil{
+
+.pageAccueil {
     padding-top: 120px;
     padding-bottom: 70px;
     padding-left: 5%;
@@ -55,8 +68,17 @@ a {
     background-image: url(../assets/img/whiteBackground.png);
     background-size: cover;
 }
-@media only screen and (max-width: 600px) {
-    .logoNavBar {
-      display: none;
+
+@media only screen and (max-width: 830px) {
+
+    .logoNavBar,
+    h2 {
+        display: none;
     }
-  }
+}
+
+@media only screen and (min-width: 830px) {
+    #iconeHome {
+        display: none;
+    }
+}

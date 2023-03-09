@@ -37,6 +37,8 @@ a {
     color: black;
 }
 .pageAccueil{
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-top: 120px;
+    padding-bottom: 70px;
+    padding-left: 5%;
+    padding-right: 5%;
 }

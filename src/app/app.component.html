@@ -1,19 +1,21 @@
 <div>
   <header>
     <img src="assets/img/logoUniv.png" class="logoNavBar">
-    <h2>
-      <a routerLink="/">
-        {{title}}
-      </a>
-    </h2>
     <div class="navBar">
       <a routerLink="/formulaire"><button mat-raised-button>
           FORMULAIRE
         </button></a>
+        <h2>
+          <a routerLink="/">
+            {{title}}
+          </a>
+        </h2>
       <a routerLink="/resultats"><button mat-raised-button>
           RESULTATS
         </button></a>
     </div>
+    
+    
   </header>
     <div class="pageAccueil">
       <router-outlet></router-outlet>

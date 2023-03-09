@@ -11,7 +11,7 @@ export class FormulaireComponent {
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
-      return 'You must enter a value';
+      return 'Vous devez entrer une valeur';
     }
 
     return this.email.hasError('email') ? 'Adresse mail invalide' : '';

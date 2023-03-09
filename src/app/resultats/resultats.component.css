@@ -1,4 +1,19 @@
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.filtre {
+  margin-left: auto;
+  margin-right: auto;
+}
+.statistiques {
+  width: 80%;
+  font-size: larger;
+}
+.classement {
+  width: 100%;
+  font-size: large;
+}

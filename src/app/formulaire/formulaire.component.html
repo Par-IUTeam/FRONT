@@ -3,7 +3,7 @@
   <form id="survey-form">
     <div class="form-control">
 
-      <mat-form-field appearance="outline" class="form left-side">
+      <mat-form-field appearance="outline" class="form">
         <mat-label>Nom</mat-label>
         <input matInput />
       </mat-form-field>
@@ -16,16 +16,19 @@
     </div>
 
     <div class="form-control">
-      <mat-form-field appearance="fill" class="form left-side">
+      <mat-form-field appearance="fill" class="form">
         <mat-label>Date de naissance  </mat-label>
         <input matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </div>
-    <div class="form-control">
-      <label for="email" id="label-email"> Email </label>
-      <input type="email" id="email" placeholder="Entrez votre email" />
+
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Entrez votre adresse mail</mat-label>
+        <input matInput placeholder="mail@example.com" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
     </div>
 
     <div class="form-control">

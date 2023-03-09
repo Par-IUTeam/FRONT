@@ -7,3 +7,8 @@
 .adress {
     width: 532px;
 }
+
+.button {
+  justify-content: space-around;
+  display: flex;
+}

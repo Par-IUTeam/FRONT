@@ -11,4 +11,5 @@
 .button {
   justify-content: space-around;
   display: flex;
+  font-size: larger;
 }

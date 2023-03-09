@@ -1,62 +1,68 @@
 <div>
   <h1 id="title">Remplir le formulaire :</h1>
+
   <form id="survey-form">
     <div class="form-control">
-
       <mat-form-field appearance="outline" class="form">
         <mat-label>Nom</mat-label>
         <input matInput />
       </mat-form-field>
-      
+
       <mat-form-field appearance="outline" class="form">
         <mat-label>Prénom</mat-label>
         <input matInput />
       </mat-form-field>
-
     </div>
 
     <div class="form-control">
       <mat-form-field appearance="fill" class="form">
-        <mat-label>Date de naissance  </mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-label>Date de naissance </mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form">
         <mat-label>Entrez votre adresse mail</mat-label>
-        <input matInput placeholder="mail@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <input
+          matInput
+          placeholder="mail@example.com"
+          [formControl]="email"
+          required
+        />
+        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-control">
+      
+      <mat-form-field appearance="outline" class="form adress">
+        <mat-label>Adresse</mat-label>
+        <input matInput />
       </mat-form-field>
 
     </div>
 
     <div class="form-control">
-      <label for="aliment"> Quel Aliment préférez vous ? </label>
-      <input
-        name="aliment"
-        id="aliment"
-        placeholder="Entrez vos/votre aliment(s) préféré(s) ici"
-      />
+
+      <mat-form-field appearance="outline" class="form">
+        <mat-label>Code Postale</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form">
+        <mat-label>Ville</mat-label>
+        <input matInput />
+      </mat-form-field>
+
     </div>
+
     <div class="button">
       <button type="reset" value="reset" id="reset">Reset</button>
       <button type="submit" value="submit" id="submit">Submit</button>
     </div>
   </form>
-
-  <div>
-    
-    <mat-form-field appearance="outline">
-      <mat-label>Select</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Textarea</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
-  </div>
 </div>

@@ -1,25 +1,27 @@
 <div>
   <header>
-    <img src="assets/img/logoUniv.png" class="logoNavBar">
+    <a href="https://iutparis-seine.u-paris.fr/informatique/"><img src="assets/img/logoUniv.png" class="logoNavBar"></a>
     <div class="navBar">
       <a routerLink="/formulaire"><button mat-raised-button>
           FORMULAIRE
         </button></a>
+      <a routerLink="/">
         <button mat-fab extended id="iconeHome" color="primary">
           <mat-icon>home</mat-icon>
         </button>
-        <h2>
-          <a routerLink="/">
-            {{title}}
-          </a>
-        </h2>
+      </a>
+      <h2>
+        <a routerLink="/">
+          {{title}}
+        </a>
+      </h2>
       <a routerLink="/resultats"><button mat-raised-button>
           RESULTATS
         </button></a>
     </div>
   </header>
-    <div class="pageAccueil">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="pageAccueil">
+    <router-outlet></router-outlet>
+  </div>
   <footer>{{credits}}</footer>
 </div>

@@ -17,11 +17,8 @@
     <div class="form-control">
       <mat-form-field appearance="fill" class="form">
         <mat-label>Date de naissance </mat-label>
-        <input matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="picker" placeholder="JJ/MM/AAAA"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 

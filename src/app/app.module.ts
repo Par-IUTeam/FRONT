@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MomentDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

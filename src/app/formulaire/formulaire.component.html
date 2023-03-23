@@ -60,7 +60,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Choisissez un aliment :</mat-label>
                 <mat-select [(value)]="alimentChoisi">
-                  <mat-option *ngFor="let i of listeAliments"></mat-option>
+                  <mat-option *ngFor="let i of listeAliments">{{i.foodName}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -71,7 +71,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Choisissez un aliment :</mat-label>
                 <mat-select [(value)]="alimentChoisi">
-                  <mat-option *ngFor="let i of listeAliments"></mat-option>
+                  <mat-option *ngFor="let i of listeAliments">{{i.foodName}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

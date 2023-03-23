@@ -1,88 +1,122 @@
 <div>
   <h1 id="title">Remplir le formulaire :</h1>
-
-  <form id="survey-form">
-    <div class="row">
-      <div class="col">
-        <div class="form-control">
+  <div >
+    <form id="survey-form"><div class="flexContainer-center">
+      <div class="flexContainer-column">
+        <div class="flexContainer-row">
           <mat-form-field appearance="outline" class="form">
             <mat-label>Nom</mat-label>
-            <input matInput />
+            <input matInput required />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="form">
             <mat-label>Prénom</mat-label>
-            <input matInput />
+            <input matInput required />
           </mat-form-field>
         </div>
 
-        <div class="form-control">
+        <div class="flexContainer-row">
           <mat-form-field appearance="fill" class="form">
             <mat-label>Date de naissance </mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="JJ/MM/AAAA" />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="MM/JJ/AAAA"
+              required
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="form">
-            <mat-label>Entrez votre adresse mail</mat-label>
-            <input matInput placeholder="mail@example.com" [formControl]="email" required />
+            <mat-label>Adresse mail</mat-label>
+            <input
+              matInput
+              placeholder="mail@example.com"
+              [formControl]="email"
+              required
+            />
             <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
           </mat-form-field>
         </div>
 
-        <div class="form-control">
-          <mat-form-field appearance="outline" class="form adress">
-            <mat-label>Adresse</mat-label>
-            <input matInput />
-          </mat-form-field>
-        </div>
+        <mat-form-field appearance="outline" class="form adress">
+          <mat-label>Adresse</mat-label>
+          <input matInput required />
+        </mat-form-field>
 
-        <div class="form-control">
-
+        <div class="flexContainer-row">
           <mat-form-field appearance="outline" class="form">
             <mat-label>Code Postale</mat-label>
-            <input matInput />
+            <input matInput required />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="form">
             <mat-label>Ville</mat-label>
-            <input matInput />
+            <input matInput required />
+          </mat-form-field>
+        </div>
+
+        <div class="flexContainer-center">
+          <mat-form-field appearance="outline" class="form">
+            <mat-label>Téléphone</mat-label>
+            <input matInput required />
+          </mat-form-field>
+        </div>
+        
+      </div>
+      
+    
+    
+    <div class="flexContainer-column">
+      <div class="flexContainer-row">
+        <div class="form-control" *ngFor="let i of [1, 2]">
+          <mat-form-field appearance="outline" class="form">
+            <mat-label>Choisissez un aliment :</mat-label>
+            <mat-select [(value)]="alimentChoisi">
+              <mat-option *ngFor="let i of listeAliments">{{
+                i.foodName
+              }}</mat-option>
+            </mat-select>
           </mat-form-field>
 
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            <div class="form-control" *ngFor="let i of [1,2,3,4,5]">
-              <mat-form-field appearance="outline">
-                <mat-label>Choisissez un aliment :</mat-label>
-                <mat-select [(value)]="alimentChoisi">
-                  <mat-option *ngFor="let i of listeAliments">{{i.foodName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="form-control" *ngFor="let i of [1,2,3,4,5]">
-              <mat-form-field appearance="outline">
-                <mat-label>Choisissez un aliment :</mat-label>
-                <mat-select [(value)]="alimentChoisi">
-                  <mat-option *ngFor="let i of listeAliments">{{i.foodName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+          <div class="form-control" *ngFor="let i of [1, 2, 3, 4, 5]">
+            <mat-form-field class="secAnne-al" appearance="outline" class="form">
+              <mat-label>Choisissez un aliment :</mat-label>
+              <mat-select [(value)]="alimentChoisi">
+                <mat-option *ngFor="let i of listeAliments">{{
+                  i.foodName
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
     <div class="button">
-      <button mat-raised-button color="warn" type="reset" value="reset" id="reset">Réinitialiser</button>
-      <button mat-raised-button color="primary" type="submit" value="submit" id="submit">Envoyer</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        value="submit"
+        id="submit"
+      >
+        Envoyer
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="reset"
+        value="reset"
+        id="reset"
+      >
+        Réinitialiser
+      </button>
     </div>
   </form>
+  </div>
 </div>

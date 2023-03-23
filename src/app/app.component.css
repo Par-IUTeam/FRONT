@@ -36,7 +36,7 @@ header {
     position: fixed;
     top: 0pt;
     left: 0pt;
-    width: 15%;
+    width: 200px;
     max-height: 100px;
     min-height: 90px;
     max-width: 300px;
@@ -44,7 +44,8 @@ header {
 
 #iconeHome {
     position :absolute;
-    top: 25px
+    top: 27.5px;
+    Left: 25px
 }
 
 .mat-mdc-extended-fab {
@@ -80,10 +81,20 @@ a {
     h2 {
         display: none;
     }
+    navBar{
+        margin-left: 27px
+    }
+    
 }
 
 @media only screen and (min-width: 850px) {
     #iconeHome {
         display: none!important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .logoNavBar{
+        display:none;
     }
 }

@@ -21,3 +21,14 @@
 .col {
   flex: 50%;
 }
+
+.flexContainer{
+  display: flex;
+  flex-direction: row;
+}
+@media only screen and (max-width: 1050px) {
+  .flexContainer{
+    display: flex;
+    flex-direction: column;
+  }
+}

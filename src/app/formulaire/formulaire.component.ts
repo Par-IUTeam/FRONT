@@ -32,7 +32,11 @@ export class FormulaireComponent {
   listeAliments: Aliment[] = [];
   
   ngOnInit(){
-    console.log("component initialisé ! ");
+    console.log("Début appel");
+    this.http.get<Aliment[]>("http://localhost:8080/foods/all").subscribe((aliments: Aliment[]) => {
+      this.listeAliments = aliments;
+      console.log(this.listeAliments);
+    });
   }
 
   getErrorMessage() {

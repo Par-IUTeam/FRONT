@@ -43,9 +43,14 @@ header {
 }
 
 #iconeHome {
-    margin-top: auto;
-    margin-bottom: auto;
+    position :absolute;
+    top: 25px
 }
+
+.mat-mdc-extended-fab {
+    padding-right: 0;
+   }
+   
 
 .navBar {
     display: flex;
@@ -79,6 +84,6 @@ a {
 
 @media only screen and (min-width: 850px) {
     #iconeHome {
-        display: none;
+        display: none!important;
     }
 }

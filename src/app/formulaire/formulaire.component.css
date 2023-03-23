@@ -12,23 +12,40 @@
   justify-content: space-around;
   display: flex;
   font-size: larger;
+  margin : 0 30%;
 }
 
-.row {
-  display: flex;
-}
-
-.col {
-  flex: 50%;
-}
-
-.flexContainer{
+.flexContainer-row{
   display: flex;
   flex-direction: row;
 }
+
+.flexContainer-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.flexContainer-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.secAnne-al {
+  margin-right:25px;
+}
+
 @media only screen and (max-width: 1050px) {
-  .flexContainer{
-    display: flex;
+  .flexContainer-row, .flexContainer-center{
     flex-direction: column;
+    justify-content:center ;
+  }
+  .form {
+    padding: 5px 20px;
+    width: 300px;
+    padding-left: 0;
+  }
+  .adress {
+    width: 300px;
   }
 }

@@ -1,13 +1,15 @@
-export class AlimentModel {
-    id: number;
-    nom: string;
-    categorie: string;
-    nbSelections: number;
+import { SubCategory } from "./sub-category.model";
 
-    constructor (id: number, nom: string, categorie: string, nbSelections: number) {
-        this.id = id;
-        this.nom = nom;
-        this.categorie = categorie;
-        this.nbSelections = nbSelections;
+export class Aliment {
+    foodId: number;
+    foodName: string;
+    subCategory: SubCategory;
+    nbVentes: number;
+
+    constructor (foodId: number, foodName: string, subCategory: SubCategory, nbVentes: number) {
+        this.foodId = foodId;
+        this.foodName = foodName;
+        this.subCategory = subCategory;
+        this.nbVentes = nbVentes;
     }
 }

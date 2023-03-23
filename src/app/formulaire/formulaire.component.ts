@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { Aliment } from '../z_modeles/aliment-classement.model';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -21,7 +23,17 @@ export const MY_DATE_FORMATS = {
 })
 
 export class FormulaireComponent {
+  constructor (
+    private http: HttpClient
+  ) {
+  }
   email = new FormControl('', [Validators.required, Validators.email]);
+  alimentChoisi: any;
+  listeAliments: Aliment[] = [];
+  
+  ngOnInit(){
+    console.log("component initialisé ! ");
+  }
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -30,5 +42,5 @@ export class FormulaireComponent {
 
     return this.email.hasError('email') ? 'Adresse mail invalide' : '';
   }
+
 }
- 

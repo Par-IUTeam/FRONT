@@ -13,3 +13,11 @@
   display: flex;
   font-size: larger;
 }
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 50%;
+}

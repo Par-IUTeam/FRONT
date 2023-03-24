@@ -67,17 +67,16 @@ a {
 
 .pageAccueil {
     padding-top: 120px;
-    padding-bottom: 70px;
+    padding-bottom: 100%;
     padding-left: 5%;
     padding-right: 5%;
     font-family: century gothic;
-    background-image: url(../assets/img/whiteBackground.png);
-    background-size: cover;
+    background-image: url(../assets/img/whiteBackground.jpg);
+    background-size:cover;
 }
 
 @media only screen and (max-width: 850px) {
 
-    .logoNavBar,
     h2 {
         display: none;
     }

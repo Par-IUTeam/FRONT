@@ -28,7 +28,7 @@
               <input
                 matInput
                 [matDatepicker]="picker"
-                placeholder="MM/JJ/AAAA"
+                placeholder="JJ/MM/AAAA" 
                 required 
                 [formControl]="dateNaissance" />
                 <mat-error *ngIf="dateNaissance.invalid">{{
@@ -130,6 +130,7 @@
           type="submit"
           value="submit"
           id="submit"
+        (click)="onSubmit()"
         >
           Envoyer
         </button>

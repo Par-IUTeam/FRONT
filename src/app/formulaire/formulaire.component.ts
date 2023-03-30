@@ -8,10 +8,10 @@ import { Utilisateur } from '../z_modeles/utilisateur.model';
 
 export const MY_DATE_FORMATS = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   },
   display: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   }
 };
 

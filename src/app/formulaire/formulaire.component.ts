@@ -45,7 +45,7 @@ export class FormulaireComponent {
     console.log("Début appel");
     this.http.get<Aliment[]>("http://localhost:8080/foods/all").subscribe((aliments: Aliment[]) => {
       this.listeAliments = aliments;
-      console.log(this.listeAliments);
+      console.log("FINI !");
     });
   }
 
@@ -105,11 +105,12 @@ export class FormulaireComponent {
     return this.numTelephone.hasError('numTelephone') ? 'Numéro de téléphone invalide' : '';
   }
 
-  onSubmit() {
-  //  let aliments: Aliment[] = [];
-    //let utilisateur: Utilisateur = new Utilisateur();
-    //this.http.post<FormExport>("http://localhost:8080/forms", new FormExport(utilisateur, aliments)).subscribe((data: FormExport) => {
-     // console.log(data);
-    //})
+  onSubmit() {/*
+    let aliments: Aliment[] = [];
+    let utilisateur: Utilisateur = new Utilisateur();
+    this.http.post<FormExport>("http://localhost:8080/forms", new FormExport(utilisateur, aliments)).subscribe((data: FormExport) => {
+     console.log(data);
+    })
+    */
   }
 }

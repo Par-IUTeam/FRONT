@@ -1,5 +1,5 @@
 export class Utilisateur {
-    id_utilisateur: number;
+    id_utilisateur: number | null;
     nom: string;
     prenom: string;
     date_de_naissance: Date;
@@ -8,7 +8,7 @@ export class Utilisateur {
     ville: string;
     telephone: string;
     
-    constructor(id_utilisateur: number, nom: string, prenom: string, date_de_naissance: Date, mail: string, code_postal: string, ville: string, telephone: string){
+    constructor(id_utilisateur: number | null, nom: string, prenom: string, date_de_naissance: Date, mail: string, code_postal: string, ville: string, telephone: string){
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;
         this.prenom = prenom;

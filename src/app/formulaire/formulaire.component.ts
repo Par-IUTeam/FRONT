@@ -37,9 +37,20 @@ export class FormulaireComponent {
   codePostale = new FormControl('', [Validators.required]);
   ville = new FormControl('', [Validators.required]);
   numTelephone = new FormControl('', [Validators.required, Validators.min(10)]);
+  food1 = new FormControl();
+  food2 = new FormControl();
+  food3 = new FormControl();
+  food4 = new FormControl();
+  food5 = new FormControl();
+  food6 = new FormControl();
+  food7 = new FormControl();
+  food8 = new FormControl();
+  food9 = new FormControl();
+  food10 = new FormControl();
 
-  alimentChoisi: any;
+  alimentsChoisi: Aliment[] = [];
   listeAliments: Aliment[] = [];
+  formValide: boolean = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
 
   ngOnInit() {
     console.log("Début appel");
@@ -47,6 +58,10 @@ export class FormulaireComponent {
       this.listeAliments = aliments;
       console.log("FINI !");
     });
+  }
+
+  onChange(){
+    this.formValide =  this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
   }
 
   getNomErrorMessage() {
@@ -105,12 +120,15 @@ export class FormulaireComponent {
     return this.numTelephone.hasError('numTelephone') ? 'Numéro de téléphone invalide' : '';
   }
 
-  onSubmit() {/*
-    let aliments: Aliment[] = [];
-    let utilisateur: Utilisateur = new Utilisateur();
-    this.http.post<FormExport>("http://localhost:8080/forms", new FormExport(utilisateur, aliments)).subscribe((data: FormExport) => {
-     console.log(data);
-    })
-    */
+  submit() {
+    let aliments: Aliment[] = this.alimentsChoisi;
+    let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!), this.email.value!, this.codePostale.value!, this.ville.value!, this.numTelephone.value!);
+    console.log("utilisateur", utilisateur);
+    console.log("liste aliments", aliments);
+    if(this.formValide){
+      this.http.post<FormExport>("http://localhost:8080/forms", new FormExport(utilisateur, aliments)).subscribe((data: FormExport) => {
+        console.log(data);
+       })
+    }
   }
 }

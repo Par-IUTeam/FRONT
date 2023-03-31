@@ -8,10 +8,10 @@ import { Utilisateur } from '../z_modeles/utilisateur.model';
 
 export const MY_DATE_FORMATS = {
   parse: {
-    dateInput: 'MM/DD/YYYY',
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-    dateInput: 'MM/DD/YYYY',
+    dateInput: 'DD/MM/YYYY',
   }
 };
 
@@ -130,5 +130,10 @@ export class FormulaireComponent {
         console.log(data);
        })
     }
+  }
+
+  onChange(){
+    console.log(this.nom.valid);
+    this.formValide = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
   }
 }

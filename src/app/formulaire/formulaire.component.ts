@@ -8,10 +8,10 @@ import { Utilisateur } from '../z_modeles/utilisateur.model';
 
 export const MY_DATE_FORMATS = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   },
   display: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   }
 };
 
@@ -38,7 +38,18 @@ export class FormulaireComponent {
   ville = new FormControl('', [Validators.required]);
   numTelephone = new FormControl('', [Validators.required, Validators.min(10)]);
 
-  alimentChoisi: any;
+  food1 = new FormControl();
+  food2 = new FormControl();
+  food3 = new FormControl();
+  food4 = new FormControl();
+  food5 = new FormControl();
+  food6 = new FormControl();
+  food7 = new FormControl();
+  food8 = new FormControl();
+  food9 = new FormControl();
+  food10 = new FormControl();
+
+  alimentChoisi: Aliment[] = [];
   listeAliments: Aliment[] = [];
 
   ngOnInit() {
@@ -47,6 +58,7 @@ export class FormulaireComponent {
       this.listeAliments = aliments;
       console.log("FINI !");
     });
+
   }
 
   getNomErrorMessage() {
@@ -104,6 +116,8 @@ export class FormulaireComponent {
     }
     return this.numTelephone.hasError('numTelephone') ? 'Numéro de téléphone invalide' : '';
   }
+
+
 
   onSubmit() {/*
     let aliments: Aliment[] = [];

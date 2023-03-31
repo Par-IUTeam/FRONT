@@ -8,10 +8,10 @@ import { Utilisateur } from '../z_modeles/utilisateur.model';
 
 export const MY_DATE_FORMATS = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   },
   display: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MM/DD/YYYY',
   }
 };
 
@@ -58,10 +58,6 @@ export class FormulaireComponent {
       this.listeAliments = aliments;
       console.log("FINI !");
     });
-  }
-
-  onChange(){
-    this.formValide =  this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
   }
 
   getNomErrorMessage() {
@@ -119,6 +115,10 @@ export class FormulaireComponent {
     }
     return this.numTelephone.hasError('numTelephone') ? 'Numéro de téléphone invalide' : '';
   }
+
+
+
+
 
   submit() {
     let aliments: Aliment[] = this.alimentsChoisi;

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { map, Observable, startWith } from 'rxjs';
 import { Aliment } from '../z_modeles/aliment-classement.model';
 import { FormExport } from '../z_modeles/form-export.model';
 import { Utilisateur } from '../z_modeles/utilisateur.model';
@@ -47,17 +48,109 @@ export class FormulaireComponent {
   food8 = new FormControl();
   food9 = new FormControl();
   food10 = new FormControl();
+  filteredOptions1!: Observable<Aliment[]>;
+  filteredOptions2!: Observable<Aliment[]>;
+  filteredOptions3!: Observable<Aliment[]>;
+  filteredOptions4!: Observable<Aliment[]>;
+  filteredOptions5!: Observable<Aliment[]>;
+  filteredOptions6!: Observable<Aliment[]>;
+  filteredOptions7!: Observable<Aliment[]>;
+  filteredOptions8!: Observable<Aliment[]>;
+  filteredOptions9!: Observable<Aliment[]>;
+  filteredOptions10!: Observable<Aliment[]>;
 
-  alimentsChoisi: Aliment[] = [];
+
+
   listeAliments: Aliment[] = [];
   formValide: boolean = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
-
+  exempleAliments: string[] = ["abricot", "banane", "cocombre", "diagramme", "elephant", "fenouil", "gingembre", "hot-dog", "iguane", "jus", "koala"];
   ngOnInit() {
+    this.filteredOptions1 = this.food1.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions2 = this.food2.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions3 = this.food3.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions4 = this.food4.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions5 = this.food5.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions6 = this.food6.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions7 = this.food7.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions8 = this.food8.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions9 = this.food9.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    this.filteredOptions10= this.food10.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
+    
     console.log("Début appel");
     this.http.get<Aliment[]>("http://localhost:8080/foods/all").subscribe((aliments: Aliment[]) => {
       this.listeAliments = aliments;
       console.log("FINI !");
     });
+  }
+
+  displayFn(aliment: Aliment): string {
+    return aliment && aliment.foodName ? aliment.foodName : '';
+  }
+
+  private _filter(name: string): Aliment[] {
+    const filterValue = name.toLowerCase();
+
+    return this.listeAliments.filter(option => option.foodName.toLowerCase().includes(filterValue));
   }
 
   getNomErrorMessage() {
@@ -116,12 +209,8 @@ export class FormulaireComponent {
     return this.numTelephone.hasError('numTelephone') ? 'Numéro de téléphone invalide' : '';
   }
 
-
-
-
-
   submit() {
-    let aliments: Aliment[] = this.alimentsChoisi;
+    let aliments: Aliment[] = [this.food1.value, this.food2.value, this.food3.value, this.food4.value, this.food5.value, this.food6.value, this.food7.value, this.food8.value, this.food9.value, this.food10.value];
     let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!), this.email.value!, this.codePostale.value!, this.ville.value!, this.numTelephone.value!);
     console.log("utilisateur", utilisateur);
     console.log("liste aliments", aliments);

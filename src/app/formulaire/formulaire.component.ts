@@ -4,7 +4,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { map, Observable, startWith } from 'rxjs';
 import { Aliment } from '../z_modeles/aliment-classement.model';
+import { Category } from '../z_modeles/category.model';
 import { FormExport } from '../z_modeles/form-export.model';
+import { SubCategory } from '../z_modeles/sub-category.model';
 import { Utilisateur } from '../z_modeles/utilisateur.model';
 
 export const MY_DATE_FORMATS = {
@@ -63,83 +65,88 @@ export class FormulaireComponent {
 
   listeAliments: Aliment[] = [];
   formValide: boolean = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
-  exempleAliments: string[] = ["abricot", "banane", "cocombre", "diagramme", "elephant", "fenouil", "gingembre", "hot-dog", "iguane", "jus", "koala"];
+  exempleAliments: Aliment[] = [new Aliment(1, "abricot",new SubCategory(1, "fruit sucré", new Category(1, "fruit")), 0),
+                                new Aliment(2, "babricot",new SubCategory(2, "fruit sucré", new Category(2, "fruit")), 0),
+                                new Aliment(3, "cabricot",new SubCategory(3, "fruit sucré", new Category(3, "fruit")), 0),
+                                new Aliment(4, "dabricot",new SubCategory(4, "fruit sucré", new Category(4, "fruit")), 0),
+                                new Aliment(5, "eabricot",new SubCategory(5, "fruit sucré", new Category(5, "fruit")), 0),
+                                new Aliment(6, "fabricot",new SubCategory(6, "fruit sucré", new Category(6, "fruit")), 0),
+                                new Aliment(7, "gabricot",new SubCategory(7, "fruit sucré", new Category(7, "fruit")), 0)];
   ngOnInit() {
-    this.filteredOptions1 = this.food1.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions2 = this.food2.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions3 = this.food3.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions4 = this.food4.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions5 = this.food5.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions6 = this.food6.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions7 = this.food7.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions8 = this.food8.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions9 = this.food9.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    this.filteredOptions10= this.food10.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
-    
     console.log("Début appel");
     this.http.get<Aliment[]>("http://localhost:8080/foods/all").subscribe((aliments: Aliment[]) => {
       this.listeAliments = aliments;
-      console.log("FINI !");
+      console.log("FINI");
+      this.filteredOptions1 = this.food1.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions2 = this.food2.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions3 = this.food3.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions4 = this.food4.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions5 = this.food5.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions6 = this.food6.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions7 = this.food7.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions8 = this.food8.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions9 = this.food9.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
+      this.filteredOptions10= this.food10.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : this.listeAliments.slice();
+        }),
+      );
     });
   }
 
@@ -149,7 +156,6 @@ export class FormulaireComponent {
 
   private _filter(name: string): Aliment[] {
     const filterValue = name.toLowerCase();
-
     return this.listeAliments.filter(option => option.foodName.toLowerCase().includes(filterValue));
   }
 
@@ -222,7 +228,7 @@ export class FormulaireComponent {
   }
 
   onChange(){
-    console.log(this.nom.valid);
+    console.log("change");
     this.formValide = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
   }
 }

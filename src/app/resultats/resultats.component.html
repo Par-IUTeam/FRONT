@@ -1,41 +1,45 @@
-<!--Tableau regroupant des statistiques sur les habitudes alimentaires des sondés-->
-<table class="statistiques">
-    <tr>
-        <th>Bio</th>
-        <th>Casher</th>
-        <th>Halal</th>
-    </tr>
-    <tr>
-        <td>420</td>
-        <td>70</td>
-        <td>90</td>
-    </tr>
-</table>
-<!--Tableau permettant d'afficher le classement des aliments les plus choisis avec filtres-->
-<mat-form-field class="filtre">
-    <mat-label>Filtres</mat-label>
-    <mat-select>
-        <mat-option value=""></mat-option>
-        <mat-option value="bio">Bio</mat-option>
-        <mat-option value="casher">Casher</mat-option>
-        <mat-option value="halal">Halal</mat-option>
-    </mat-select>
-</mat-form-field>
-<table class="classement">
-<tr>
-    <th>
-        Nom Aliment
-    </th>
-    <th>
-        Nom Groupe
-    </th>
-    <th>
-        Nombre de sélections
-    </th>
-</tr>
-<tr *ngFor="let aliment of listAlimentsClassement">
-    <td>{{aliment.foodName}}</td>
-    <td>{{aliment.subCategory.subCategoryName}}</td>
-    <td>{{aliment.nbVentes}}</td>
-</tr>
-</table>
+<div class="h-100">
+    <!--Tableau regroupant des statistiques sur les habitudes alimentaires des sondés-->
+    <header>Nombre d'aliments par catégorie</header>
+    <table class="statistiques">
+
+        <tr>
+            <th>Bio</th>
+            <th>Casher</th>
+            <th>Halal</th>
+        </tr>
+        <tr>
+            <td>{{nbBio}}</td>
+            <td>{{nbCasher}}</td>
+            <td>{{nbBio}}</td>
+        </tr>
+    </table>
+    <!--Tableau permettant d'afficher le classement des aliments les plus choisis avec filtres-->
+    <mat-form-field class="filtre">
+        <mat-label>Filtres</mat-label>
+        <mat-select>
+            <mat-option value=""></mat-option>
+            <mat-option value="bio">Bio</mat-option>
+            <mat-option value="casher">Casher</mat-option>
+            <mat-option value="halal">Halal</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <table class="classement">
+        <tr>
+            <th>
+                Nom Aliment
+            </th>
+            <th>
+                Nom Groupe
+            </th>
+            <th>
+                Nombre de sélections
+            </th>
+        </tr>
+        <tr *ngFor="let aliment of listAlimentsClassement">
+            <td>{{aliment.foodName}}</td>
+            <td>{{aliment.subCategory.subCategoryName}}</td>
+            <td>{{aliment.nbVentes}}</td>
+        </tr>
+    </table>
+</div>

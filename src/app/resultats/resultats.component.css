@@ -17,3 +17,8 @@ table, th, td {
   width: 100%;
   font-size: large;
 }
+header {
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}

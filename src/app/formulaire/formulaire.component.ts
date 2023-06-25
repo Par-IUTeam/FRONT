@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { map, Observable, startWith } from 'rxjs';
@@ -7,7 +7,7 @@ import { Aliment } from '../z_modeles/aliment-classement.model';
 import { FormExport } from '../z_modeles/form-export.model';
 import { Utilisateur } from '../z_modeles/utilisateur.model';
 import { SurveyExport } from '../z_modeles/survey-export.model';
-import { formatDate } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -28,9 +28,8 @@ export const MY_DATE_FORMATS = {
 })
 
 export class FormulaireComponent {
-  constructor(
-    private http: HttpClient,
-    @Inject(LOCALE_ID) public locale: string,){
+  constructor(private http: HttpClient,
+    private _snackbar: MatSnackBar){
   }
   nom = new FormControl('', [Validators.required]);
   prenom = new FormControl('', [Validators.required]);
@@ -65,14 +64,28 @@ export class FormulaireComponent {
     });
   }
 
-  onSelectFood(form: FormControl) {
-    this.filteredOptions = form.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.listeAliments.slice();
-      }),
-    );
+  onInputFood(form: FormControl) {
+    if (form.value.length >= 3) {
+      this.http.get<Aliment[]>("http://aram.team:8000/aliment/find/" + form.value).subscribe((aliments: Aliment[]) => {
+        this.filteredOptions = form.valueChanges.pipe(
+          startWith(''),
+          map(value => {
+            const name = typeof value === 'string' ? value : value?.name;
+            return name ? this._filter(name as string) : aliments.slice();
+          }),
+        );
+      })
+    }
+    else {
+      this.filteredOptions = form.valueChanges.pipe(
+        startWith(''),
+        map(value => {
+          const name = typeof value === 'string' ? value : value?.name;
+          return name ? this._filter(name as string) : [];
+        }),
+      );
+    }
+      
   }
 
   displayFn(aliment: Aliment): string {
@@ -141,6 +154,7 @@ export class FormulaireComponent {
   }
 
   submit() {
+    console.log("appel");
     let aliments: Aliment[] = [this.food1.value, this.food2.value, this.food3.value, this.food4.value, this.food5.value, this.food6.value, this.food7.value, this.food8.value, this.food9.value, this.food10.value];
     let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!).toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }), this.email.value!);
     if (this.formValide) {
@@ -149,12 +163,34 @@ export class FormulaireComponent {
           for(let index = 0; index < this.data.listeAliments.length; ++index) {
             if (aliments[index]){
               this.http.post<SurveyExport>("http://aram.team:8000/survey/create", new SurveyExport(aliments[index].code, user.id!)).subscribe((data: SurveyExport) => {
-  
+                this.submitted();
               })
             }
           }
       })
     }
+  }
+
+  submitted() {
+    this.nom.reset();
+    this.prenom.reset();
+    this.dateNaissance.reset();
+    this.email.reset();
+    this.adresse.reset();
+    this.codepostal.reset();
+    this.ville.reset();
+    this.numTelephone.reset();
+    this.food1.reset();
+    this.food2.reset();
+    this.food3.reset();
+    this.food4.reset();
+    this.food5.reset();
+    this.food6.reset();
+    this.food7.reset();
+    this.food8.reset();
+    this.food9.reset();
+    this.food10.reset();
+    this._snackbar.open("Sondage enregistré !", undefined, {duration : 7000});
   }
 
   onChangeData(){

@@ -16,7 +16,7 @@ export class ResultatsComponent {
   constructor(private http: HttpClient) { }
   ngOnInit() {
     this.http.get<Aliment[]>("http://aram.team:8000/aliment/all").subscribe((aliments: Aliment[]) => {
-      this.listAlimentsClassement = aliments;
+      this.listAlimentsClassement = aliments.sort((a,b) => b.count - a.count);
     })
   }
 }

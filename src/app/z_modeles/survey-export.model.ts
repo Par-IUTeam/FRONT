@@ -1,9 +1,9 @@
 export class SurveyExport {
-    codeALiment: string;
-    idUser: number;
+    alimentCode: string;
+    userId: number;
 
     constructor (codeAliment: string, idUser: number) {
-        this.codeALiment = codeAliment;
-        this.idUser = idUser;
+        this.alimentCode = codeAliment;
+        this.userId = idUser;
     }
 }

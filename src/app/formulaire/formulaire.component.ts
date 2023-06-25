@@ -172,6 +172,11 @@ export class FormulaireComponent {
   }
 
   submitted() {
+    this.reinitialiserFormulaire();
+    this._snackbar.open("Sondage enregistré !", undefined, {duration : 7000});
+  }
+
+  reinitialiserFormulaire() {
     this.nom.reset();
     this.prenom.reset();
     this.dateNaissance.reset();
@@ -190,7 +195,6 @@ export class FormulaireComponent {
     this.food8.reset();
     this.food9.reset();
     this.food10.reset();
-    this._snackbar.open("Sondage enregistré !", undefined, {duration : 7000});
   }
 
   onChangeData(){

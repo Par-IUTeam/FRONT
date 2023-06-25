@@ -154,7 +154,6 @@ export class FormulaireComponent {
   }
 
   submit() {
-    console.log("appel");
     let aliments: Aliment[] = [this.food1.value, this.food2.value, this.food3.value, this.food4.value, this.food5.value, this.food6.value, this.food7.value, this.food8.value, this.food9.value, this.food10.value];
     let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!).toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }), this.email.value!);
     if (this.formValide) {

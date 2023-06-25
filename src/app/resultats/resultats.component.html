@@ -4,14 +4,14 @@
     <table class="statistiques">
 
         <tr>
-            <th>Bio</th>
+            <th>Vegan</th>
             <th>Casher</th>
             <th>Halal</th>
         </tr>
         <tr>
-            <td>{{nbBio}}</td>
+            <td>{{nbVegan}}</td>
             <td>{{nbCasher}}</td>
-            <td>{{nbBio}}</td>
+            <td>{{nbHalal}}</td>
         </tr>
     </table>
     <!--Tableau permettant d'afficher le classement des aliments les plus choisis avec filtres-->
@@ -19,7 +19,7 @@
         <mat-label>Filtres</mat-label>
         <mat-select>
             <mat-option value=""></mat-option>
-            <mat-option value="bio">Bio</mat-option>
+            <mat-option value="vegan">Vegan</mat-option>
             <mat-option value="casher">Casher</mat-option>
             <mat-option value="halal">Halal</mat-option>
         </mat-select>
@@ -37,9 +37,9 @@
             </th>
         </tr>
         <tr *ngFor="let aliment of listAlimentsClassement">
-            <td>{{aliment.foodName}}</td>
-            <td>{{aliment.subCategory.subCategoryName}}</td>
-            <td>{{aliment.nbVentes}}</td>
+            <td>{{aliment.name}}</td>
+            <td>{{aliment.category.name}}</td>
+            <td>{{aliment.count}}</td>
         </tr>
     </table>
 </div>

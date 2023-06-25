@@ -15,6 +15,10 @@
   margin: 0 30%;
 }
 
+line {
+  display: false;
+}
+
 .flexContainer-row {
   display: flex;
   flex-direction: row;
@@ -52,7 +56,9 @@
   .flexContainer-row {
     flex-direction: column;
   }
-  
+  line {
+    display: true;
+  }
   h1 {
     font-size: 26px;
   }
@@ -61,6 +67,6 @@
     width: 350px;
   }
   .button {
-    margin : 0 15%;
+    margin-bottom: 5%;
   }
 }

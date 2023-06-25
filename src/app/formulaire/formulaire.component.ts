@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { map, Observable, startWith } from 'rxjs';
 import { Aliment } from '../z_modeles/aliment-classement.model';
-import { Category } from '../z_modeles/category.model';
 import { FormExport } from '../z_modeles/form-export.model';
-import { SubCategory } from '../z_modeles/sub-category.model';
 import { Utilisateur } from '../z_modeles/utilisateur.model';
+import { SurveyExport } from '../z_modeles/survey-export.model';
+import { formatDate } from '@angular/common';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -29,15 +29,15 @@ export const MY_DATE_FORMATS = {
 
 export class FormulaireComponent {
   constructor(
-    private http: HttpClient
-  ) {
+    private http: HttpClient,
+    @Inject(LOCALE_ID) public locale: string,){
   }
   nom = new FormControl('', [Validators.required]);
   prenom = new FormControl('', [Validators.required]);
   dateNaissance = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   adresse = new FormControl('', [Validators.required]);
-  codePostale = new FormControl('', [Validators.required]);
+  codepostal = new FormControl('', [Validators.required]);
   ville = new FormControl('', [Validators.required]);
   numTelephone = new FormControl('', [Validators.required, Validators.min(10)]);
   food1 = new FormControl();
@@ -50,6 +50,7 @@ export class FormulaireComponent {
   food8 = new FormControl();
   food9 = new FormControl();
   food10 = new FormControl();
+  filteredOptions!: Observable<Aliment[]>;
   filteredOptions1!: Observable<Aliment[]>;
   filteredOptions2!: Observable<Aliment[]>;
   filteredOptions3!: Observable<Aliment[]>;
@@ -62,21 +63,14 @@ export class FormulaireComponent {
   filteredOptions10!: Observable<Aliment[]>;
 
 
+  data!: FormExport;
 
   listeAliments: Aliment[] = [];
-  formValide: boolean = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
-  exempleAliments: Aliment[] = [new Aliment(1, "abricot",new SubCategory(1, "fruit sucré", new Category(1, "fruit")), 0),
-                                new Aliment(2, "babricot",new SubCategory(2, "fruit sucré", new Category(2, "fruit")), 0),
-                                new Aliment(3, "cabricot",new SubCategory(3, "fruit sucré", new Category(3, "fruit")), 0),
-                                new Aliment(4, "dabricot",new SubCategory(4, "fruit sucré", new Category(4, "fruit")), 0),
-                                new Aliment(5, "eabricot",new SubCategory(5, "fruit sucré", new Category(5, "fruit")), 0),
-                                new Aliment(6, "fabricot",new SubCategory(6, "fruit sucré", new Category(6, "fruit")), 0),
-                                new Aliment(7, "gabricot",new SubCategory(7, "fruit sucré", new Category(7, "fruit")), 0)];
+  formValide: boolean = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codepostal.valid && this.ville.valid && this.numTelephone.valid;
+
   ngOnInit() {
-    console.log("Début appel");
-    this.http.get<Aliment[]>("http://localhost:8080/foods/all").subscribe((aliments: Aliment[]) => {
+    this.http.get<Aliment[]>("http://aram.team:8000/aliment/all").subscribe((aliments: Aliment[]) => {
       this.listeAliments = aliments;
-      console.log("FINI");
       this.filteredOptions1 = this.food1.valueChanges.pipe(
         startWith(''),
         map(value => {
@@ -140,7 +134,7 @@ export class FormulaireComponent {
           return name ? this._filter(name as string) : this.listeAliments.slice();
         }),
       );
-      this.filteredOptions10= this.food10.valueChanges.pipe(
+      this.filteredOptions10 = this.food10.valueChanges.pipe(
         startWith(''),
         map(value => {
           const name = typeof value === 'string' ? value : value?.name;
@@ -151,12 +145,12 @@ export class FormulaireComponent {
   }
 
   displayFn(aliment: Aliment): string {
-    return aliment && aliment.foodName ? aliment.foodName : '';
+    return aliment && aliment.name ? aliment.name : '';
   }
 
   private _filter(name: string): Aliment[] {
     const filterValue = name.toLowerCase();
-    return this.listeAliments.filter(option => option.foodName.toLowerCase().includes(filterValue));
+    return this.listeAliments.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
   getNomErrorMessage() {
@@ -194,11 +188,11 @@ export class FormulaireComponent {
     return this.adresse.hasError('adresse') ? 'Entrez une Adresse' : '';
   }
 
-  getCodePostaleErrorMessage() {
-    if (this.codePostale.hasError('required')) {
+  getCodepostalErrorMessage() {
+    if (this.codepostal.hasError('required')) {
       return '';
     }
-    return this.codePostale.hasError('codePostale') ? 'Entrez un code postale' : '';
+    return this.codepostal.hasError('codepostal') ? 'Entrez un code postal' : '';
   }
 
   getVilleErrorMessage() {
@@ -217,18 +211,22 @@ export class FormulaireComponent {
 
   submit() {
     let aliments: Aliment[] = [this.food1.value, this.food2.value, this.food3.value, this.food4.value, this.food5.value, this.food6.value, this.food7.value, this.food8.value, this.food9.value, this.food10.value];
-    let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!), this.email.value!, this.codePostale.value!, this.ville.value!, this.numTelephone.value!);
-    console.log("utilisateur", utilisateur);
-    console.log("liste aliments", aliments);
-    if(this.formValide){
-      this.http.post<FormExport>("http://localhost:8080/forms", new FormExport(utilisateur, aliments)).subscribe((data: FormExport) => {
-        console.log(data);
-       })
+    let utilisateur: Utilisateur = new Utilisateur(null, this.nom.value!, this.prenom.value!, new Date(this.dateNaissance.value!).toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }), this.email.value!);
+    if (this.formValide) {
+      this.http.post<Utilisateur>("http://aram.team:8000/user/create", utilisateur).subscribe((user: Utilisateur) => {
+          this.data = new FormExport(utilisateur, aliments);
+          for(let index = 0; index < this.data.listeAliments.length; ++index) {
+            if (aliments[index]){
+              this.http.post<SurveyExport>("http://aram.team:8000/survey/create", new SurveyExport(aliments[index].code, user.id!)).subscribe((data: SurveyExport) => {
+  
+              })
+            }
+          }
+      })
     }
   }
 
-  onChange(){
-    console.log("change");
-    this.formValide = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codePostale.valid && this.ville.valid && this.numTelephone.valid;
+  onChangeData(){
+    this.formValide = this.nom.valid && this.prenom.valid && this.dateNaissance.valid && this.email.valid && this.adresse.valid && this.codepostal.valid && this.ville.valid && this.numTelephone.valid;
   }
 }

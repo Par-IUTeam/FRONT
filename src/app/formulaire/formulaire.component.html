@@ -7,13 +7,13 @@
           <div class="flexContainer-row">
             <mat-form-field appearance="fill" class="form">
               <mat-label>Nom</mat-label>
-              <input matInput required [formControl]="nom" (change)="onChange()" />
+              <input matInput required [formControl]="nom" (change)="onChangeData()" />
               <mat-error *ngIf="nom.invalid">{{ getEmailErrorMessage() }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="form">
               <mat-label>Prénom</mat-label>
-              <input matInput required [formControl]="prenom" (change)="onChange()" />
+              <input matInput required [formControl]="prenom" (change)="onChangeData()" />
               <mat-error *ngIf="prenom.invalid">{{ getEmailErrorMessage() }}</mat-error>
             </mat-form-field>
           </div>
@@ -21,7 +21,7 @@
           <div class="flexContainer-row">
             <mat-form-field appearance="fill" class="form">
               <mat-label>Date de naissance </mat-label>
-              <input matInput [matDatepicker]="picker" placeholder="JJ/MM/AAAA" required [formControl]="dateNaissance" (change)="onChange()" />
+              <input matInput [matDatepicker]="picker" placeholder="JJ/MM/AAAA" required [formControl]="dateNaissance" (change)="onChangeData()" />
               <mat-error *ngIf="dateNaissance.invalid">{{ getDateNaissanceErrorMessage() }}</mat-error>
 
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -30,27 +30,27 @@
 
             <mat-form-field appearance="fill" class="form">
               <mat-label>Adresse mail</mat-label>
-              <input matInput placeholder="mail@example.com" [formControl]="email" required (change)="onChange()" />
+              <input matInput placeholder="mail@example.com" [formControl]="email" required (change)="onChangeData()" />
               <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
             </mat-form-field>
           </div>
 
           <mat-form-field appearance="fill" class="form adress">
             <mat-label>Adresse</mat-label>
-            <input matInput required [formControl]="adresse" (change)="onChange()" />
+            <input matInput required [formControl]="adresse" (change)="onChangeData()" />
             <mat-error *ngIf="adresse.invalid">{{ getAdresseErrorMessage() }}</mat-error>
           </mat-form-field>
 
           <div class="flexContainer-row">
             <mat-form-field appearance="fill" class="form">
-              <mat-label>Code Postale</mat-label>
-              <input matInput required [formControl]="codePostale" (change)="onChange()" />
-              <mat-error *ngIf="codePostale.invalid">{{ getCodePostaleErrorMessage() }}</mat-error>
+              <mat-label>Code Postal</mat-label>
+              <input matInput required [formControl]="codepostal" (change)="onChangeData()" />
+              <mat-error *ngIf="codepostal.invalid">{{ getCodepostalErrorMessage() }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="form">
               <mat-label>Ville</mat-label>
-              <input matInput required [formControl]="ville" (change)="onChange()" />
+              <input matInput required [formControl]="ville" (change)="onChangeData()" />
               <mat-error *ngIf="ville.invalid">{{ getVilleErrorMessage() }}</mat-error>
             </mat-form-field>
           </div>
@@ -59,7 +59,7 @@
             <mat-form-field appearance="fill" class="form">
               <mat-label>Téléphone</mat-label>
               <input matInput [formControl]="numTelephone" required #input maxlength="10" minlength="10"
-                (change)="onChange()" />
+                (change)="onChangeData()" />
               <mat-error *ngIf="numTelephone.invalid">{{ getTelephoneErrorMessage() }}</mat-error>
             </mat-form-field>
           </div>
@@ -71,7 +71,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food1" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions1 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -79,7 +79,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food2" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions2 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -87,7 +87,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food3" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions3 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -95,7 +95,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food4" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions4 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -103,7 +103,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food5" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions5 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
           </div>
@@ -113,7 +113,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food6" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions6 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -121,7 +121,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food7" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions7 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -129,7 +129,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food8" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions8 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -137,7 +137,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food9" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions9 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
 
@@ -145,7 +145,7 @@
               <mat-label>Choisissez un aliment</mat-label>
               <input type="text" placeholder="Ex : Bagel" matInput [formControl]="food10" [matAutocomplete]="auto" />
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                <mat-option *ngFor="let i of filteredOptions10 | async" [value]="i">{{ i.foodName }}</mat-option>
+                <mat-option *ngFor="let i of filteredOptions | async" [value]="i">{{ i.name }}</mat-option>
               </mat-autocomplete>
             </mat-form-field>
           </div>

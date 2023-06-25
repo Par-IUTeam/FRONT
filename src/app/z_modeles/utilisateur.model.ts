@@ -1,21 +1,15 @@
 export class Utilisateur {
-    id_utilisateur: number | null;
-    nom: string;
-    prenom: string;
-    date_de_naissance: Date;
-    mail: string;
-    code_postal: string;
-    ville: string;
-    telephone: string;
+    id: number | null;
+    lastName: string;
+    firstName: string;
+    birthDate: string;
+    email: string;
     
-    constructor(id_utilisateur: number | null, nom: string, prenom: string, date_de_naissance: Date, mail: string, code_postal: string, ville: string, telephone: string){
-        this.id_utilisateur = id_utilisateur;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.date_de_naissance = date_de_naissance;
-        this.mail = mail;
-        this.code_postal = code_postal;
-        this.ville = ville;
-        this.telephone = telephone;
+    constructor(id_utilisateur: number | null, nom: string, prenom: string, date_de_naissance: string, mail: string){
+        this.id = id_utilisateur;
+        this.lastName = nom;
+        this.firstName = prenom;
+        this.birthDate = date_de_naissance;
+        this.email = mail;
     }
 }

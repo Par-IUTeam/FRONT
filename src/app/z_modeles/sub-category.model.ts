@@ -1,13 +1,9 @@
-import { Category } from "./category.model";
-
 export class SubCategory {
-    subCategoryId: number;
-    subCategoryName: string;
-    category: Category;
+    code: string;
+    name: string;
 
-    constructor (subCategoryId: number, subCategoryName: string, category: Category) {
-        this.subCategoryId = subCategoryId;
-        this.subCategoryName = subCategoryName;
-        this.category = category;
+    constructor (subCategoryId: string, subCategoryName: string) {
+        this.code = subCategoryId;
+        this.name = subCategoryName;
     }
 }

@@ -50,17 +50,8 @@ export class FormulaireComponent {
   food8 = new FormControl();
   food9 = new FormControl();
   food10 = new FormControl();
+
   filteredOptions!: Observable<Aliment[]>;
-  filteredOptions1!: Observable<Aliment[]>;
-  filteredOptions2!: Observable<Aliment[]>;
-  filteredOptions3!: Observable<Aliment[]>;
-  filteredOptions4!: Observable<Aliment[]>;
-  filteredOptions5!: Observable<Aliment[]>;
-  filteredOptions6!: Observable<Aliment[]>;
-  filteredOptions7!: Observable<Aliment[]>;
-  filteredOptions8!: Observable<Aliment[]>;
-  filteredOptions9!: Observable<Aliment[]>;
-  filteredOptions10!: Observable<Aliment[]>;
 
 
   data!: FormExport;
@@ -71,77 +62,17 @@ export class FormulaireComponent {
   ngOnInit() {
     this.http.get<Aliment[]>("http://aram.team:8000/aliment/all").subscribe((aliments: Aliment[]) => {
       this.listeAliments = aliments;
-      this.filteredOptions1 = this.food1.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions2 = this.food2.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions3 = this.food3.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions4 = this.food4.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions5 = this.food5.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions6 = this.food6.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions7 = this.food7.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions8 = this.food8.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions9 = this.food9.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
-      this.filteredOptions10 = this.food10.valueChanges.pipe(
-        startWith(''),
-        map(value => {
-          const name = typeof value === 'string' ? value : value?.name;
-          return name ? this._filter(name as string) : this.listeAliments.slice();
-        }),
-      );
     });
+  }
+
+  onSelectFood(form: FormControl) {
+    this.filteredOptions = form.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.name;
+        return name ? this._filter(name as string) : this.listeAliments.slice();
+      }),
+    );
   }
 
   displayFn(aliment: Aliment): string {

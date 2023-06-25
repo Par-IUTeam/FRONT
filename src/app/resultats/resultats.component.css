@@ -22,3 +22,8 @@ header {
   font-weight: bold;
   font-size: larger;
 }
+@media only screen and (max-width: 850px) {
+  .classement {
+    font-size : 12px;
+  }
+}
